@@ -40,23 +40,23 @@ const App = () => {
   document.addEventListener('mousemove', cursorPosition);
   document.addEventListener('touchmove', cursorPosition);
 
-  useEffect(() => {
-    // Click Tracker
-    const modules = ['relatedItemsAndOutfits', 'overview', 'qa', 'rateAndReview'];
+  // useEffect(() => {
+  //   // Click Tracker
+  //   const modules = ['relatedItemsAndOutfits', 'overview', 'qa', 'rateAndReview'];
 
-    const listeners = modules.map(module => {
-      let elem = document.getElementById(module);
-      elem.addEventListener('click', trackClicks);
-    });
+  //   const listeners = modules.map(module => {
+  //     let elem = document.getElementById(module);
+  //     elem.addEventListener('click', trackClicks);
+  //   });
 
-    //   // Determine unique user
-    let uniqueUser = localStorage.getItem(document.cookie);
-    uniqueUser = JSON.parse(uniqueUser);
-    if (uniqueUser.cookie !== document.cookie) {
-      console.log('user is not the same');
-      localStorage.setItem(`${document.cookie}`, JSON.stringify({ cookie: document.cookie }));
-    }
-  }, []);
+  //   // Determine unique user
+  //   let uniqueUser = localStorage.getItem(document.cookie);
+  //   uniqueUser = JSON.parse(uniqueUser);
+  //   if (uniqueUser.cookie !== document.cookie) {
+  //     console.log('user is not the same');
+  //     localStorage.setItem(`${document.cookie}`, JSON.stringify({ cookie: document.cookie }));
+  //   }
+  // }, []);
 
   useEffect(() => {
     // Single Product

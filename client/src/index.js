@@ -1,12 +1,9 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
+import { createRoot } from 'react-dom/client';
 import App from './App.jsx';
 import '../src/assets/styles.css';
 import { TrackerProvider } from './TrackerProvider.jsx';
 
-ReactDOM.render(
-  <TrackerProvider>
-    <App/>
-  </TrackerProvider>,
-  document.getElementById('root')
-);
+const container = document.getElementById('root');
+const root = createRoot(container);
+root.render(<App />);

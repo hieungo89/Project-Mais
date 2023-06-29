@@ -33,6 +33,7 @@
   display: grid;
   font-family: sans-serif;
   justify-items: center;
+  width: 100%;
 }
 
 html {
