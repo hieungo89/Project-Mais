@@ -37,16 +37,16 @@ Our team built a fully functional front-end for a product page of an eCommerce s
 ### Product Overview:
 
 <div align="center">
-  <img src="screenshots/Overview.png" alt="Overview" width="500">
+  <img width="500" alt="Product Overview" src="https://github.com/user-attachments/assets/7556bee9-8127-41ce-a941-e640cef9e465">
 </div>
-The overview section includes an image gallery with a sidebar that contains the product information, style selectors and add to cart capabilities. The image gallery will rerender when a different style is selected and the sidebar will rerender when a new product is selected.
+The overview section features an image gallery accompanied by a sidebar containing product information, style selectors, and add-to-cart functionality. When a different style is chosen, the image gallery updates accordingly. Similarly, selecting a new product triggers the sidebar to update. Users can specify the style, size, and quantity of the product before adding it to their cart. For discounted items, the original price is shown with a strikethrough, alongside the new discounted price.
 <table>
   <tr>
     <td>
-      <img src="screenshots/Overview-Expanded.png" alt="Zoom View Screenshot">
+      <img alt="expanded view" src="https://github.com/user-attachments/assets/8cf22468-4964-4714-835d-8d17c9338b84">
     </td>
     <td width="80%">
-      <b>Expanded View:</b>  The expanded view modal will open when the image within the image gallery is clicked. The expanded view also includes a zoomed view with a zoom and pan feature, where users can zoom into the image and pan with the movement of their cursor.
+      <b>Expanded View:</b>  Clicking an image within the gallery opens an expanded view modal. This modal features a zoom and pan capability, allowing users to zoom into the image and navigate with their cursor.
     </td>
   </tr>
 </table>
@@ -55,16 +55,16 @@ The overview section includes an image gallery with a sidebar that contains the 
 ### Related Products:
 
 <div align="center">
-  <img src="screenshots/RelatedProducts.png" alt="Related Products" width="500">
+  <img width="500" alt="Related Products" src="https://github.com/user-attachments/assets/ae5b0222-b3d1-44e0-960d-ed306cd813a9">
 </div>
-Users can scroll through the related products carousel to see suggested products. Each related product card contains the name, image, price, and rating for the product. Users can also add the current product to the outfit list. Their outfits will persist upon refreshing the browser.
+Users can browse the related products carousel to discover suggested items. Each card within the carousel displays the product's name, image, price, and rating. Users have the option to add the current product to their outfit list, which remains intact even after refreshing the browser. Selecting a related product will reload the page to display the chosen item.
 <table>
   <tr>
     <td>
-    <img alt="Screen Shot 2022-10-29 at 3 15 52 PM" src="https://user-images.githubusercontent.com/12160369/198854423-97534e61-0777-4ccd-9a97-c91cd5160189.png">
+    <img alt="Compare Products" src="https://user-images.githubusercontent.com/12160369/198854423-97534e61-0777-4ccd-9a97-c91cd5160189.png">
     </td>
     <td width="80%">
-      <b>Compare Products:</b>  A user can click on the card of a related product to compare its features with the current product. A modal popup allows a user to compare without leaving the page.
+      <b>Compare Products:</b>  Users can click on a related product card to compare its features with the current product. A modal popup appears, allowing for a side-by-side comparison without leaving the page. The modal highlights both the current and chosen products, showcasing attributes such as size, width, quality, comfort, fit, and length.
     </td>
   </tr>
 </table>
@@ -73,32 +73,32 @@ Users can scroll through the related products carousel to see suggested products
 ### Questions and Answers:
 
 <div align="center">
-  <img src="screenshots/QnA.png" alt="Q&A" width="500">
+  <img width="500" alt="QnA" src="https://github.com/user-attachments/assets/58c41010-a01a-46a8-9766-6e03d484a234">
 </div>
-Questions and answers related to the product are shown in this section. Only 2 sets of questions and answers are shown by default, but users can click expand to see additional questions and answers. Users can post their own questions and answers. They can also mark specific questions and answers as helpful. Marking as helpful will move it toward the top of the list, allowing other users to locate helpful data more easily. Users can also report questions and answers to remove them from the list. Users can search for specific question or answer with the search bar.
+This section showcases questions and answers related to the product. By default, only two sets are displayed, but users can click to expand and view more. Users have the ability to post their own questions and answers, mark specific entries as helpful, and report inappropriate content. Marking as helpful elevates the entry to the top of the list, making it easier for others to find valuable information. Additionally, a search bar is provided for users to find specific questions or answers quickly.
 <table>
   <tr>
     <td>
-      <img src="screenshots/SearchBar.png" alt="Search Bar">
+      <img alt="search" src="https://github.com/user-attachments/assets/12b3b9b5-659a-4989-82f3-cd3c2b903b3c">
     </td>
     <td>
-      <b>Search Bar:</b> This feature allows user to look up questions and answers based on at least 3 keywords typed. The search is not case sensitive.
-    </td>
-  </tr>
-  <tr>
-    <td>
-      <img src="screenshots/AskQuestionModal.png" alt="Add Question">
-    </td>
-    <td>
-      <b>Add Questions:</b> Clicking on "ASK A QUESTION +" button will open a modal that allows the user to fill in their question. The user must fill out the question box, their name, and a valid email address in order to press the submit button.
+      <b>Search Bar:</b> This feature enables users to search for questions and answers using at least three keywords. The search functionality is case-insensitive.
     </td>
   </tr>
   <tr>
     <td>
-      <img src="screenshots/SubmitAnswerModal.png" alt="Add Answer">
+      <img alt="Add Question" src="https://github.com/user-attachments/assets/590910f5-e966-432e-9986-b4cad40e8685">
+    </td>
+    <td>
+      <b>Add Questions:</b> Clicking the "ASK A QUESTION +" button opens a modal where users can submit their questions. They must complete the question box, provide their name, and enter a valid email address to enable the submit button.
+    </td>
+  </tr>
+  <tr>
+    <td>
+      <img alt="Add Answer" src="https://github.com/user-attachments/assets/48b69de3-131b-4a9e-b346-0cbbfaddbf59">
     </td>
     <td width="80%">
-      <b>Add Answer:</b> Clicking on "ADD ANSWER" button will open a modal that allows the user to write an answer to the given question. The user must fill out the answer box, their name, and a valid email address in order to press the submit button. The user has the option to upload up to 5 photos. Uploading photos uses an outside source called Cloudinary to render the images as a url.
+      <b>Add Answer:</b> Clicking the "ADD ANSWER" button opens a modal for users to provide their answer to the given question. They must complete the answer box, enter their name, and provide a valid email address to enable the submit button. Additionally, users can upload up to five photos, which will be rendered as URLs using an external service called Cloudinary.
     </td>
   </tr>
 </table>
@@ -107,16 +107,16 @@ Questions and answers related to the product are shown in this section. Only 2 s
 ### Ratings and Reviews:
 
 <div align="center">
-  <img src="screenshots/RatingsNReviews.png" alt="Ratings & Reviews" width="500">
+  <img width="500" alt="Reviews" src="https://github.com/user-attachments/assets/9e214ebe-8c1e-47e4-b1e6-68ccf6052641">
 </div>
-Users can see how other customers have rated a given product from a scale of 1-5. A composite average of all scores is shown, as well as the breakdown by rating. Up to 2 reviews is shown by default but users can click to see more. Users can also add their own review for a given product, including their own rating. Like questions and answers, users can also mark reviews as helpful to increase visibility.
+Users can view customer ratings for a product on a scale of 1-5. A composite average score and a detailed rating breakdown are provided. By default, up to two reviews are displayed, with an option to view more. Users can also submit their own reviews and ratings for the product. Similar to the questions and answers section, reviews can be marked as helpful to boost their visibility.
 <table>
   <tr>
     <td>
-      <img src="https://user-images.githubusercontent.com/104481165/206039107-5a23b822-81e1-4fc4-a251-ae94340c8d65.png" alt="Write Reviews Screenshot">
+      <img alt="Add Review" src="https://github.com/user-attachments/assets/652d08b1-26b2-4248-b225-ff0885af77d4">
     </td>
     <td width="80%">
-      <b>Write Reviews:</b>  A modal popup allows a user to add a review for the selected product without leaving the page.
+      <b>Write Reviews:</b>  A modal popup enables users to add a review for the selected product without navigating away from the page.
     </td>
   </tr>
 </table>
