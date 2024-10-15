@@ -22,6 +22,7 @@ const AskAQuestionModal = ({ open, onClose, product, submitQuestion }) => {
             <em>For privacy reasons, do not use your full name or email address.</em>
           </p>
           <p className="question-email">
+            <label>What is your email:</label><br />
             <input type="email" name="email" size="40" maxLength="60" placeholder="Example: jackson11@email.com" required /><br />
             <em>For authentication reasons, you will not be emailed.</em>
           </p>

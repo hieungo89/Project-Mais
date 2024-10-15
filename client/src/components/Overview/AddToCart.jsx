@@ -19,18 +19,19 @@ const AddToCart = ({currentStyle, skuSelected, quantitySelected, changeSkuSelect
   return (
     <div className="add-to-cart">
       {failToAdd ? <p style={{color: 'red'}}>Please select size</p> : null}
-      <SizeSelector
-        currentStyle={currentStyle}
-        skuSelected={skuSelected}
-        changeSkuSelected={changeSkuSelected}
-        changeQuantitySelected={changeQuantitySelected}
-        toggleMessage={toggleMessage}/>
-      <QuantitySelector
-        currentStyle={currentStyle}
-        skuSelected={skuSelected}
-        quantitySelected={quantitySelected}
-        changeQuantitySelected={changeQuantitySelected}/>
-      <br/>
+      <div className="selectors">
+        <SizeSelector
+          currentStyle={currentStyle}
+          skuSelected={skuSelected}
+          changeSkuSelected={changeSkuSelected}
+          changeQuantitySelected={changeQuantitySelected}
+          toggleMessage={toggleMessage}/>
+        <QuantitySelector
+          currentStyle={currentStyle}
+          skuSelected={skuSelected}
+          quantitySelected={quantitySelected}
+          changeQuantitySelected={changeQuantitySelected}/>
+      </div>
       {currentStyle.skus?.null ? null :
         <button data-testid="add-to-cart-button" className="add-to-cart-button" onClick={onAddToCart}>Add to Cart</button>}
     </div>

@@ -7,7 +7,6 @@ const AddReviewModal = ({ prodName, addReview, open, onClose, product_id, metaDa
   const [recommend, setRecommend] = useState(false);
   const [rating, setRating] = useState(0);
   const [star, setStar] = useState();
-  // const [images, setImages] = useState([]);
   const [body, setBody] = useState('');
 
   const summary = useRef('');
@@ -22,55 +21,37 @@ const AddReviewModal = ({ prodName, addReview, open, onClose, product_id, metaDa
   }
   for (let i = 0; i < characteristicsArray.length; i++) {
     switch (characteristicsArray[i][0]) {
-      case 'Size':
-        characteristicsArray[i].push('1 = A size too small');
-        characteristicsArray[i].push('5 = A size too wide');
-        break;
-      case 'Width':
-        characteristicsArray[i].push('1 = Too narrow');
-        characteristicsArray[i].push('5 = Too wide');
-        break;
-      case 'Comfort':
-        characteristicsArray[i].push('1 = uncomfortable');
-        characteristicsArray[i].push('5 = Perfect');
-        break;
-      case 'Quality':
-        characteristicsArray[i].push('1 = Poor');
-        characteristicsArray[i].push('5 = Perfect');
-        break;
-      case 'Length':
-        characteristicsArray[i].push('1 = Runs Short');
-        characteristicsArray[i].push('5 = Runs Long');
-        break;
-      case 'Fit':
-        characteristicsArray[i].push('1 = Runs tight');
-        characteristicsArray[i].push('5 = Runs long');
-        break;
-      default:
-        break;
+    case 'Size':
+      characteristicsArray[i].push('1 = A size too small');
+      characteristicsArray[i].push('5 = A size too wide');
+      break;
+    case 'Width':
+      characteristicsArray[i].push('1 = Too narrow');
+      characteristicsArray[i].push('5 = Too wide');
+      break;
+    case 'Comfort':
+      characteristicsArray[i].push('1 = uncomfortable');
+      characteristicsArray[i].push('5 = Perfect');
+      break;
+    case 'Quality':
+      characteristicsArray[i].push('1 = Poor');
+      characteristicsArray[i].push('5 = Perfect');
+      break;
+    case 'Length':
+      characteristicsArray[i].push('1 = Runs Short');
+      characteristicsArray[i].push('5 = Runs Long');
+      break;
+    case 'Fit':
+      characteristicsArray[i].push('1 = Runs tight');
+      characteristicsArray[i].push('5 = Runs long');
+      break;
+    default:
+      break;
     }
   }
 
-  // // photo uploader
-  // const photoWidget = cloudinary.createUploadWidget(
-  //   {
-  //     cloudName: 'dgjzqkjh0',
-  //     uploadPreset: 'Add Review Form'
-  //   },
-  //   (error, result) => {
-  //     if (error) {
-  //       console.log('error uploading photo', error);
-  //     }
-  //     if (!error && result && result.event === 'success') {
-  //       // console.log('result.info.url', result.info.url);
-  //       setImages([...images, result.info.url]);
-  //     }
-  //   }
-  // );
-
   const handleSubmit = (event) => {
     event.preventDefault();
-    // convert characteristics back into an object for the post request
     let charsObj = {};
     for (let i = 0; i < characteristicsArray.length; i++) {
       charsObj[characteristicsArray[i][1].id] = characteristicsArray[i][1].value;
@@ -90,16 +71,14 @@ const AddReviewModal = ({ prodName, addReview, open, onClose, product_id, metaDa
     addReview(data);
   };
 
-  // show the user how many words are left before the body is complete
   const showCounter = () => {
     let counter = body.length;
     let left = 50 - body.length;
     return `Minimum required characters left: ${left}`;
   };
 
-  // if the modal isn't open, return null
   if (!open) {
-    return null;
+    return;
   }
 
   return ReactDom.createPortal(

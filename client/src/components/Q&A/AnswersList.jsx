@@ -23,7 +23,6 @@ const AnswersList = ({ questionId, handleHelpful, handleReport, answerInfo }) =>
     if (e.target.innerText === 'COLLAPSE ANSWERS') { setAnswerCount(2); }
   };
 
-  // Async Rendering in conjunction with handleLoadAnswersButton
   useEffect(() => {
     if (totalAnswerList.length < 3) {
       setLoadAnswerButton(false);
@@ -84,13 +83,13 @@ const AnswersList = ({ questionId, handleHelpful, handleReport, answerInfo }) =>
   }, [answerInfo]);
 
   return (
-    <div className="answers-container">
-      <div className="answers-list">{showAnswersData()}</div>
+    <>
+      {showAnswersData()}
       <div className="load-answers">
         {loadAnswerButton && <button onClick={(e) => handleLoadAnswersButton(e)}>LOAD MORE ANSWERS</button>}
         {collapseButton && answerList.length > 0 && <button onClick={(e) => handleLoadAnswersButton(e)}>COLLAPSE ANSWERS</button>}
       </div>
-    </div>
+    </>
   );
 };
 

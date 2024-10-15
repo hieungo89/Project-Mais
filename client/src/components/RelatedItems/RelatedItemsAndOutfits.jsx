@@ -76,8 +76,7 @@ const RelatedItemsAndOutfits = ({ productId, updateProduct, currentProduct }) =>
   };
 
   return (
-    <div className="related-items-and-outfits-container">
-      <br></br>
+    <>
       <RelatedItems
         productId={productId}
         calcRating={calcRating}
@@ -87,7 +86,6 @@ const RelatedItemsAndOutfits = ({ productId, updateProduct, currentProduct }) =>
         renderBlankCards={renderBlankCards}
         currentProduct={currentProduct}
       />
-      <br></br>
       <OutfitCreation
         productId={productId}
         calcRating={calcRating}
@@ -97,7 +95,7 @@ const RelatedItemsAndOutfits = ({ productId, updateProduct, currentProduct }) =>
         renderBlankCards={renderBlankCards}
         product={currentProduct}
       />
-    </div>
+    </>
   );
 };
 

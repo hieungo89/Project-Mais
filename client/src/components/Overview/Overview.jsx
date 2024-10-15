@@ -53,7 +53,7 @@ const Overview = ({productId, currentProduct, rating, totalReviews}) => {
   };
 
   return (
-    <div className="product-overview">
+    <>
       <ImageGallery
         currentStyle={currentStyle} />
       <div className="overview-sidebar">
@@ -80,7 +80,7 @@ const Overview = ({productId, currentProduct, rating, totalReviews}) => {
         <ProductInfo2
           currentProduct={currentProduct} />
       </div>
-    </div>
+    </>
   );
 };
 

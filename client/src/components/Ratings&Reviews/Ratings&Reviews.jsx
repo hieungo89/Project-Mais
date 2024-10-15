@@ -3,7 +3,7 @@ import axios from 'axios';
 import RatingsBreakdownSidebar from './Ratings/RatingsBreakdownSidebar.jsx';
 import ReviewsList from './Reviews/ReviewsList.jsx';
 
-const RatingsAndReviews = ({ product_id, currentProduct, rating, ratingsData, totalReviews, images, setImages, photoWidget }) => {
+const RatingsAndReviews = ({ productId, currentProduct, rating, ratingsData, totalReviews, images, setImages, photoWidget }) => {
   const [displayedReviews, setDisplayedReviews] = useState([]);
   const [reviews, setReviews] = useState([]);
   const [fiveStar, setFiveStar] = useState(0);
@@ -18,8 +18,7 @@ const RatingsAndReviews = ({ product_id, currentProduct, rating, ratingsData, to
   const [products, setProducts] = useState({});
 
   useEffect(() => {
-    // get 100 reviews with the above product_id number
-    axios.get(`/reviews/${product_id}/count`)
+    axios.get(`/reviews/${productId}/count`)
       .then((results) => {
         let productReviews = results.data.results;
         let totalRating = 0;
@@ -42,25 +41,24 @@ const RatingsAndReviews = ({ product_id, currentProduct, rating, ratingsData, to
     setProducts(currentProduct);
   }, [ratingsData]);
 
-  // invoked in AddReviewModal.jsx
   const addReview = (data) => {
     axios.post('/reviews', data)
       .catch((error) => { console.log(error); });
   };
 
   return (
-    <div className="ratings-and-reviews">
+    <>
       <div className="ratings-breakdown">
         < RatingsBreakdownSidebar setDisplayedReviews={setDisplayedReviews} reviews={reviews} fiveStar={fiveStar} fourStar={fourStar} threeStar={threeStar} twoStar={twoStar} oneStar={oneStar} totalNumberOfReviews={totalReviews} rating={rating} />
       </div>
       <div className="reviews-list">
         {displayedReviews.length > 0
           ?
-          <ReviewsList product_id={product_id} prodName={prodName} metaData={metaData} addReview={addReview} displayedReviews={displayedReviews} totalNumberOfReviews={totalReviews} photoWidget={photoWidget} images={images} setImages={setImages} />
-          : <ReviewsList product_id={product_id} prodName={prodName} metaData={metaData} addReview={addReview} reviews={reviews} totalNumberOfReviews={totalReviews} photoWidget={photoWidget} images={images} setImages={setImages} />
+          <ReviewsList product_id={productId} prodName={prodName} metaData={metaData} addReview={addReview} displayedReviews={displayedReviews} totalNumberOfReviews={totalReviews} photoWidget={photoWidget} images={images} setImages={setImages} />
+          : <ReviewsList product_id={productId} prodName={prodName} metaData={metaData} addReview={addReview} reviews={reviews} totalNumberOfReviews={totalReviews} photoWidget={photoWidget} images={images} setImages={setImages} />
         }
       </div>
-    </div>
+    </>
   );
 };
 

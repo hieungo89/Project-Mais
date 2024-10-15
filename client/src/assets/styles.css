@@ -1,39 +1,21 @@
 /*
 ========================================
-    WHOLE APP CONTENT
+          WHOLE APP CONTENT
 ========================================
 */
 
-/* DARK THEME */
-/* :root {
-  cursor: none;
-  --cursorX: 50vw;
-  --cursorY: 50vh;
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
 }
-:root:before {
-  content: '';
-  display: block;
-  width: 100%;
-  height: 100%;
-  position: fixed;
-  pointer-events: none;
-  background: radial-gradient(
-    circle 10vmax at var(--cursorX) var(--cursorY),
-    rgba(0,0,0,0) 0%,
-    rgba(0,0,0,.5) 80%,
-    rgba(0,0,0,.95) 100%
-  )
-} */
-
-/* body {
-  zoom: 30%;
-} */
 
 #app-container {
   display: grid;
   font-family: sans-serif;
   justify-items: center;
-  width: 100%;
+  width: 100vw;
+  position: relative;
 }
 
 html {
@@ -58,41 +40,52 @@ button,
   font-size: 14px;
   font-weight: bold;
   border-radius: 5px;
-  /* margin-right: 5px; */
-  /* box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px */
 }
 
 #banner {
+  position: absolute;
+  top: 0;
   display: flex;
   justify-content: space-between;
-  justify-self: stretch;
   align-items: center;
+  width: 100%;
   height: 2.5em;
-  padding: 20px 10px 0 10px;
+  padding: 10px;
   color: #738678;
   background-image: url(https://i.pinimg.com/564x/63/a7/f2/63a7f2a192df6526ecb57aa87d83bdc4.jpg);
   font-family: sans-serif;
   font-size: 25px;
+  padding-right: 2rem;
+}
+
+.logo-container {
+  display: flex;
+  align-items: center;
+  gap: 2px;
 }
 
 .logo {
-  height: 2.5em;
-  width: 2.5em;
+  height: 2.5rem;
+  width: 2.5rem;
   border-radius: 50%;
   object-fit: cover;
-  position: relative;
-  top: 4px;
 }
 
-.company-name {
-  display: inline-block;
-  position: relative;
-  top: -3px;
+.banner-icons {
+  display: flex;
+  gap: 8px;
+}
+
+.search-container {
+  border: 1px solid white;
+  border-radius: 8px;
+  background: white;
+  padding: 1px 4px;
 }
 
 /*
 ========================================
-    MODAL
+                MODAL
 ========================================
 */
 
@@ -104,7 +97,7 @@ button,
   background-color: #FFF;
   padding: 30px;
   z-index: 1000;
-  border-radius: 5px;
+  border-radius: 6px;
 }
 
 .overlay-styles {
@@ -126,9 +119,17 @@ button,
   z-index: 1000;
 }
 
+.question-title,
+.question-subtitle,
+.answer-title,
+.answer-subtitle {
+  margin-bottom: 10px;
+}
+
 .qa-form {
-  display: block;
-  overflow: scroll;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
 }
 
 .cancel-button {
@@ -139,47 +140,29 @@ button,
   color: red;
 }
 
-
 /*
 ========================================
-    OVERVIEW
+              OVERVIEW
 ========================================
 */
 
 #overview {
-  margin-top: 50px;
-  margin-bottom: 75px;
+  margin: 100px 0 75px 0;
+  width: 100vw;
+  height: auto;
+  display: flex;
+  justify-content: center;
 }
 
 .image-gallery {
-  display: inline-block;
-  padding: 0 20px;
-}
-
-.overview-sidebar {
-  display: inline-block;
-  width: 500px;
-  padding: 0 20px;
-}
-
-.product-name {
-  margin-block-end: -5px;
-  margin-block-start: -5px;
-}
-
-.out-of-stock-main-image {
-  background-image: url(https://www.drip.com/hubfs/Imported_Blog_Media/Out-of-Stock-Product-Pages-WordPress.jpg);
-  background-size: cover;
-  background-position: center;
-  width: 600px;
-  height: 600px;
-  display: inline-block;
+  display: flex;
+  padding-right: 20px;
 }
 
 .thumbnail-nav-bar {
-  width: 82.5px;
-  height: 625px;
-  display: inline-block;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 .thumbnail-nav-bar-arrows {
@@ -188,7 +171,7 @@ button,
 
 #thumbnail-nav-bar-images {
   width: 82.5px;
-  height: 575.5px;
+  height: 70vh;
   overflow: hidden;
   scroll-behavior: smooth;
 }
@@ -226,6 +209,23 @@ button,
   color: #5A5A5A;
 }
 
+.overview-sidebar {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  width: 50vw;
+  max-width: 450px;
+}
+
+.out-of-stock-main-image {
+  background-image: url(https://www.drip.com/hubfs/Imported_Blog_Media/Out-of-Stock-Product-Pages-WordPress.jpg);
+  background-size: cover;
+  background-position: center;
+  width: 600px;
+  height: 600px;
+  display: inline-block;
+}
+
 .fa-angle-left {
   left: 5px;
 }
@@ -236,16 +236,17 @@ button,
 
 .default-view {
   position: relative;
-  width: 600px;
-  height: 600px;
-  display: inline-block;
+  width: 50vw;
+  max-width: 550px;
+  height: 80vh;
+  max-height: 550px;
 }
 
 .default-view-image {
   background-size: cover;
   background-position: center;
-  width: 600px;
-  height: 600px;
+  width: 100%;
+  height: 100%;
   cursor: zoom-in;
   box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
 }
@@ -277,8 +278,8 @@ button,
   margin-right: 2.5px;
 }
 
-.styles {
-  margin: 25px 0px;
+.style-description {
+  margin-bottom: 10px;
 }
 
 .style-selector {
@@ -297,9 +298,8 @@ button,
 
 .checkmark {
   position: absolute;
-  top: -5px;
-  right: -5px;
-  padding: 5px;
+  top: 0;
+  right: 0;
   border-radius: 50%;
   background-color: green;
   color: white;
@@ -315,10 +315,14 @@ button,
 
 .cart-dropdown {
   padding: 8px 12px;
-  margin-right: 10px;
   margin-bottom: 10px;
   border: 1.5px solid grey;
   box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+}
+
+.selectors {
+  display: flex;
+  justify-content: space-between;
 }
 
 .size-selector {
@@ -334,11 +338,18 @@ button,
   border: none;
   color: white;
   padding: 10px 30px;
-  text-align: center;
-  text-decoration: none;
   font-size: 16px;
-  width: 92.75%;
+  width: 100%;
   box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+}
+
+.product-info p {
+  padding: 2px 0;
+}
+
+.product-info ul {
+  padding-left: 1rem;
+  margin-bottom: 2px;
 }
 
 .social {
@@ -387,33 +398,27 @@ a:visited {
 
 /*
 ========================================
-    RELATED PRODUCTS
+          RELATED PRODUCTS
 ========================================
 */
 
-.related-items-and-outfits-container {
+#related-items-and-outfits {
   display: grid;
 }
 
-.card-container-container {
-  width: 1500px;
-  position: relative;
-  display: inline-block;
-  scroll-behavior: smooth;
-  top: 50%;
-  left: 56%;
-  transform: translate(-50%, -50%);
+.display-container {
+  width: 100vw;
+  text-align: center;
 }
 
-.carousel-title {
-  position: relative;
-  left: 6.5%;
+.display-container h3 {
+  font-size: 2rem;
+  text-align: start;
+  padding-left: 13%;
 }
 
 #card-container-related {
   display: inline-flex;
-  justify-content: left;
-  position: relative;
   scroll-snap-type: x mandatory;
   scroll-behavior: smooth;
   width: 75%;
@@ -422,8 +427,6 @@ a:visited {
 
 #card-container-outfit {
   display: inline-flex;
-  justify-content: left;
-  position: relative;
   scroll-snap-type: x mandatory;
   scroll-behavior: smooth;
   width: 75%;
@@ -436,27 +439,26 @@ a:visited {
   position: relative;
 }
 
-.cards-arrow {
-  position: relative;
-  padding: 20px 20px 20px 10px;
-  top: -2.5em;
-  color: black;
+.products-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.cards-arrow,
+.cards-arrow-transparent {
+  padding: 0 10px;
   zoom: 200%;
+}
+
+.cards-arrow-transparent {
+  color: white;
 }
 
 .cards-arrow-outfit {
   position: relative;
   padding: 20px 20px 20px 10px;
   top: 0.2em;
-  color: black;
-  zoom: 200%;
-}
-
-.cards-arrow-transparent {
-  position: relative;
-  padding: 20px 15px 20px 10px;
-  top: 0.2em;
-  color: white;
   zoom: 200%;
 }
 
@@ -464,11 +466,9 @@ a:visited {
   min-width: 255px;
   height: 375px;
   margin: .85em;
-  display: inline;
   scroll-snap-align: start;
-  border-radius: .2rem;
+  border-radius: .6rem;
   overflow: hidden;
-  padding-bottom: 10px;
 }
 
 .related-items-card,
@@ -484,14 +484,10 @@ a:visited {
 
 .add-outfit-btn {
   margin: 1em;
-  height: 20px;
-  margin-top: 150px;
-  text-align: center;
-  border: none;
+  margin-top: 50%;
   border-radius: .8em;
   box-shadow: 0 2px 5px 0 rgba(0, 0, 0, .2);
   padding: 1em;
-  margin-left: 2em;
 }
 
 .add-outfit-btn:hover {
@@ -590,7 +586,6 @@ a:visited {
   background-position: center;
   overflow: hidden;
 }
-/* background-image: url(https://www.drip.com/hubfs/Imported_Blog_Media/Out-of-Stock-Product-Pages-WordPress.jpg); */
 
 .bar-rating-fill {
   position: relative;
@@ -603,20 +598,11 @@ a:visited {
   display: inline-block;
   top: -7px;
 }
-/* .bar-rating-icon {
-  position: relative;
-  display: inline-block;
-  height: 36px;
-  /* background-color: gold;
-}
-*/
 
 .bar-rating-outline {
   height: 36px;
   width: 31px;
-
 }
-
 
 .close-modal-btn {
   position: fixed;
@@ -628,148 +614,132 @@ a:visited {
 
 /*
 ========================================
-    QUESTIONS AND ANSWERS
+        QUESTIONS AND ANSWERS
 ========================================
 */
 
-.qa-container {
+#qa {
   display: grid;
   max-height: 660px;
-  margin-top: 40px;
-  padding: 20px 80px;
+  margin: 40px 60px;
   overflow: scroll;
-  border-radius: 5px;
+  border-radius: 6px;
   box-shadow: rgba(99, 99, 99, 0.1) 0px 2px 8px 0px;
   grid-template-columns: 2fr 6fr;
   grid-template-areas:
     "title title"
     "search search"
     "q-list q-list"
+    "buttons buttons"
+}
+
+.qa-title,
+.search-question {
+  position: sticky;
+  z-index: 999;
+  top: 0;
+  background: white;
+  margin: 0 10px;
 }
 
 .qa-title {
   grid-area: title;
-  zoom: 150%;
-  padding-left: 15px;
+  font-size: 1.5rem;
 }
 
 .search-question {
   grid-area: search;
-  background-color: white;
-  zoom: 200%;
-  padding: 5px;
-  position: sticky;
+  padding: 6px;
   border: 1px solid grey;
   border-radius: 2px;
-  top: 0;
-  z-index: 999;
+  top: 1.7rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
 
 .questions-list {
   grid-area: q-list;
 }
 
+.button-container {
+  grid-area: buttons;
+  display: flex;
+  gap: 6px;
+}
+
 .questions-list,
 .more-answered-questions,
 .ask-question-modal {
-  padding: 5px 10px 5px 10px;
-}
-
-.individual-question {
-  display: grid;
-  grid-gap: 5px;
-  grid-template-columns: repeat(10, 1fr);
-  padding: 0 5px 0 5px;
-  border-radius: 2px;
-  grid-template-areas:
-    "question q-body q-body q-body q-body q-body q-body q-body add-a add-a"
-    "blank q-info q-info q-info q-helpful q-helpful q-report q-report q-report q-report"
-    "answer render-a render-a render-a render-a render-a render-a render-a render-a render-a"
-}
-
-.blank {
-  grid-area: blank;
-}
-
-.question {
-  grid-area: question;
-  justify-self: end;
-}
-
-.question-body {
-  grid-area: q-body;
-  word-wrap: break-word;
-}
-
-.answers {
-  grid-area: answer;
-  justify-self: end;
-}
-
-.render-answers {
-  grid-area: render-a;
-}
-
-.question-info {
-  grid-area: q-info;
-}
-
-.question-helpfulness {
-  grid-area: q-helpful;
-  justify-self: end;
-}
-
-.question-report {
-  grid-area: q-report;
-  justify-self: start;
-  margin-top: 14px;
-}
-
-.add-answer {
-  grid-area: add-a;
-  padding: 0 10px 0 0;
-  justify-self: end;
+  padding: 5px 10px;
 }
 
 .question-input {
   border: none;
+  width: 100%;
+  padding: 6px;
 }
 
-.individual-answer {
+.individual-question {
   display: grid;
-  grid-template-columns: 4fr 2fr 4fr;
-  grid-gap: 5px;
-  padding: 0 10px 0 10px;
-  margin-bottom: 20px;
-  border-radius: 5px;
-  box-shadow: 0 1px 2px 0 rgb(0, 0, 0, .1);
-  grid-template-areas:
-    "a-body a-body a-body"
-    "a-photos a-photos a-photos"
+  grid-gap: 8px 6px;
+  grid-template-columns: repeat(8, 1fr);
+  margin-bottom: .5rem;
+  border: 0.5px solid grey;
+  border-radius: 6px;
+  padding: 6px;
 }
 
-.individual-answer-body {
-  grid-area: a-body;
-  margin-top: 0;
-  word-wrap: break-word;
+.question,
+.answers  {
+  grid-column: 1;
+  justify-self: end;
+  font-weight: 800;
+}
+
+.question-body,
+.question-info,
+.answer-body,
+.answer-info {
+  grid-column: 2 / 4;
+}
+
+.question-info,
+.answer-info {
+  font-style: italic;
+}
+
+.question-helpfulness,
+.answer-helpfulness {
+  grid-column: 6;
+  display: flex;
+  align-items: center;
+}
+
+.question-report,
+.answer-report {
+  grid-column: 7;
+}
+
+.add-answer {
+  grid-column: 8;
+  padding: 0 10px;
+  justify-self: end;
+  align-self: baseline;
 }
 
 .photos {
-  grid-area: a-photos;
   word-wrap: break-word;
 }
 
-.answer-helpfulness {
-  justify-self: end;
-}
-
-.answer-report {
-  justify-self: start;
-  margin-top: 15px;
-}
-
 .load-answers {
-  padding: 10px 0 10px 0;
+  grid-column: 1 / 9;
+  justify-self: end;
+  padding: 10px 0;
+}
+
+.helpful {
+  margin-left: 6px;
 }
 
 .helpful:hover {
@@ -778,30 +748,23 @@ a:visited {
 
 /*
 ========================================
-    RATINGS & REVIEWS
+          RATINGS & REVIEWS
 ========================================
 */
 
-
-.ratings-and-reviews {
-  margin-top: 40px;
-  margin-bottom: 100px;
+#rateAndReview {
   display: grid;
   grid-template-columns: 2fr 4fr;
   max-height: 660px;
-  max-width: 1070px;
   box-shadow: rgba(99, 99, 99, 0.1) 0px 2px 8px 0px;
   overflow-x: hidden;
-  border-radius: 5px;
-  padding: 20px 40px;
+  border-radius: 6px;
+  margin: 40px 60px;
+  padding: 10px;
 }
 
 .bar-chart {
   line-height: .5;
-}
-
-.align-ratings-breakdown-header {
-  margin-left: 0%;
 }
 
 .single-star-container {
@@ -824,21 +787,16 @@ a:visited {
   background-color: gold;
 }
 
-.review-boxes {
-  padding-right: 20px;
-  overflow: hidden;
-  max-width: 70%;
-}
-
 .reviews-body {
   overflow: scroll;
 }
 
 .ratings-breakdown {
-  flex-basis: 40%;
+  grid-column: 1;
 }
 
 .reviews-list {
+  grid-column: 2;
   width: 100%;
   position: relative;
   line-height: 1.5;
@@ -871,7 +829,31 @@ a:visited {
 .flexbox-container {
   display: flex;
   align-items: center;
-  padding: 20px 20px 20px 0;
+  padding: 20px 0;
+  width: 40%;
+}
+
+.flexbox-container h2 {
+  margin-right: 10px;
+}
+
+.flexbox-container .breakdown {
+  display: flex;
+  align-items: center;
+}
+
+.flexbox-container .breakdown img {
+  width: 16px !important;
+  height: auto;
+  margin-right: 2px;
+}
+
+.flexbox-container .breakdown span {
+  margin-left: 2px;
+}
+
+.ratings-chart {
+  height: 25px;
 }
 
 .sort-dropdown {

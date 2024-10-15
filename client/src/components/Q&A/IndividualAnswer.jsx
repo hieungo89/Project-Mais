@@ -21,16 +21,18 @@ const IndividualAnswer = ({ answer, handleHelpful, handleReport }) => {
   };
 
   return (
-    <div className="individual-answer" data-testid="answer-modal-inputs">
-      <p className="individual-answer-body">{body}</p>
+    <>
+      <p className="answer-body">{body}</p>
       {photos.length > 0 && displayPhotos()}
-      <p className="answer-name-and-date">by {answerer_name}, {format(parseISO(date), 'MMMM dd, yyyy')}</p>
-      <p className="answer-helpfulness">Helpful? <em><span className="helpful" onClick={() => handleHelpful(answer)}>Yes</span> ({helpfulness})</em></p>
+      <p className="answer-info">by {answerer_name}, {format(parseISO(date), 'MMMM dd, yyyy')}</p>
+      <p className="answer-helpfulness">
+        Helpful? <span className="helpful" onClick={() => handleHelpful(answer)}>Yes</span> ({helpfulness})
+      </p>
       <p className="answer-report">
         {!report && <button onClick={() => { setReport(true); handleReport(answer); }}>Report</button>}
         {report && <span>Reported</span>}
       </p>
-    </div>
+    </>
   );
 };
 

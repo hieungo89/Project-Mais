@@ -70,32 +70,34 @@ const OutfitCreation = ({ productId, calcRating, saleAndImageSetter, renderPrice
   };
 
   return (
-    <div className="card-container-container">
-      <h3 className="outfit-items-title carousel-title">Your Outfits</h3>
-      {outfits.length > 3 && startIndex !== 0 && <i className="fa-solid fa-arrow-left-long cards-arrow-outfit" onClick={() => { changeDisplay('left'); }} />}
-      {(outfits.length <= 3 || startIndex === 0) && <i className="fa-solid fa-arrow-left-long cards-arrow-transparent" />}
-      <div id="card-container-outfit">
-        <div className="card add-outfit card-shadow">
-          <i className="fa-solid fa-plus add-outfit-btn" onClick={addOutfit}> Add to Outfit</i>
+    <div className="display-container">
+      <h3>Your Outfits</h3>
+      <div className="products-container">
+        {outfits.length > 3 && startIndex !== 0 && <i className="fa-solid fa-arrow-left-long cards-arrow-outfit" onClick={() => { changeDisplay('left'); }} />}
+        {(outfits.length <= 3 || startIndex === 0) && <i className="fa-solid fa-arrow-left-long cards-arrow-transparent" />}
+        <div id="card-container-outfit">
+          <div className="card add-outfit card-shadow">
+            <i className="fa-solid fa-plus add-outfit-btn" onClick={addOutfit}> Add to Outfit</i>
+          </div>
+          {outfits.map((outfit) => {
+            return (
+              <OutfitCard
+                key={outfit.id}
+                outfit={outfit}
+                calcRating={calcRating}
+                saleAndImageSetter={saleAndImageSetter}
+                renderPrice={renderPrice}
+                updateProduct={updateProduct}
+                removeOutfit={removeOutfit}
+                getProductReviews={getProductReviews}
+              />
+            );
+          })}
+          {outfits.length <= 2 && renderBlankCards(outfits.length)}
         </div>
-        {outfits.map((outfit) => {
-          return (
-            <OutfitCard
-              key={outfit.id}
-              outfit={outfit}
-              calcRating={calcRating}
-              saleAndImageSetter={saleAndImageSetter}
-              renderPrice={renderPrice}
-              updateProduct={updateProduct}
-              removeOutfit={removeOutfit}
-              getProductReviews={getProductReviews}
-            />
-          );
-        })}
-        {outfits.length <= 2 && renderBlankCards(outfits.length)}
+        {outfits.length > 3 && startIndex + 3 !== outfits.length && <i className="fa-solid fa-arrow-right-long cards-arrow-outfit" onClick={() => { changeDisplay('right'); }} />}
+        {(outfits.length <= 3 || startIndex + 3 === outfits.length) && <i className="fa-solid fa-arrow-right-long cards-arrow-transparent" />}
       </div>
-      {outfits.length > 3 && startIndex + 3 !== outfits.length && <i className="fa-solid fa-arrow-right-long cards-arrow-outfit" onClick={() => { changeDisplay('right'); }} />}
-      {(outfits.length <= 3 || startIndex + 3 === outfits.length) && <i className="fa-solid fa-arrow-right-long cards-arrow-transparent" />}
     </div>
   );
 };

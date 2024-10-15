@@ -35,22 +35,22 @@ const IndividualQuestion = ({ question, handleHelpful, handleReport, product, ph
 
   return (
     <div className="individual-question">
-      <p className="question"><b>Q:</b></p>
+      <p className="question">Q:</p>
       <p className="question-body">{question_body}</p>
-      <p className="add-answer">
-        <button onClick={() => setIsOpen(true)} >Add Answer</button>
-        <AddAnswerModal open={isOpen} onClose={() => { setIsOpen(false); setImages([]); }} question={question_body} submitAnswer={handleSubmitAnswer} product={product} photoWidget={photoWidget} images={images} setImages={setImages} />
-      </p>
+      {/* <p className="add-answer"> */}
+      <button onClick={() => setIsOpen(true)} className="add-answer" >Add Answer</button>
+      <AddAnswerModal open={isOpen} onClose={() => { setIsOpen(false); setImages([]); }} question={question_body} submitAnswer={handleSubmitAnswer} product={product} photoWidget={photoWidget} images={images} setImages={setImages} />
+      {/* </p> */}
       <p className="question-info">by {asker_name}, {format(parseISO(question_date), 'MMMM dd, yyyy')}</p>
-      <p className="question-helpfulness">Helpful? <em><span className="helpful" onClick={() => { handleHelpful(question); }}>Yes</span> ({question_helpfulness})</em></p>
+      <p className="question-helpfulness">
+        Helpful? <span className="helpful" onClick={() => { handleHelpful(question); }}>Yes</span> ({question_helpfulness})
+      </p>
       <p className="question-report">
         {!report && <button onClick={() => { setReport(true); handleReport(question); }}>Report</button>}
         {report && <span>Reported</span>}
       </p>
       <div className="answers"><b>A:</b></div>
-      <div className="render-answers">
-        <AnswersList questionId={question_id} answerInfo={answerData} />
-      </div>
+      <AnswersList questionId={question_id} answerInfo={answerData} />
     </div >
   );
 };

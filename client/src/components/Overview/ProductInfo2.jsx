@@ -10,10 +10,10 @@ const ProductInfo2 = ({currentProduct}) => {
   };
 
   return (
-    <div>
+    <div className="product-info">
       <p><i>{currentProduct?.slogan}</i></p>
       <p>{currentProduct?.description}</p>
-      <p>Features</p>
+      <p>Features:</p>
       <ul>
         {currentProduct?.features?.map(feature =>
           <li key={feature.feature}>{feature.feature + ': ' + feature.value}</li>

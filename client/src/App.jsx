@@ -4,16 +4,15 @@ import Overview from './components/Overview/Overview.jsx';
 import QuestionsAndAnswers from './components/Q&A/QA.jsx';
 import RelatedItemsAndOutfits from './components/RelatedItems/RelatedItemsAndOutfits.jsx';
 import RatingsAndReviews from './components/Ratings&Reviews/Ratings&Reviews.jsx';
-import { useTrackerUpdate } from './TrackerProvider.jsx';
 
 const App = () => {
   const [productId, setProductId] = useState(40352);
-  const trackClicks = useTrackerUpdate();
   const [currentProduct, setCurrentProduct] = useState({});
   const [rating, setRating] = useState(0);
   const [ratingsData, setRatingsData] = useState([]);
   const [images, setImages] = useState([]);
   const [totalReviews, setTotalReviews] = useState(0);
+  const [windowWidth, setWindowWidth] = useState(window.innerWidth);
 
   const updateProduct = (e, prodId) => { setProductId(prodId); };
 
@@ -30,33 +29,14 @@ const App = () => {
     }
   );
 
-  // DARK THEME FLASHLIGHT MODE //
-  const cursorPosition = (e) => {
-    var x = e.clientX || e.touches[0].clientX;
-    var y = e.clientY || e.touches[0].clientY;
-    document.documentElement.style.setProperty('--cursorX', x + 'px');
-    document.documentElement.style.setProperty('--cursorY', y + 'px');
+  const handleResize = () => {
+    const currentWidth = window.outerWidth;
+    setWindowWidth(currentWidth);
   };
-  document.addEventListener('mousemove', cursorPosition);
-  document.addEventListener('touchmove', cursorPosition);
 
-  // useEffect(() => {
-  //   // Click Tracker
-  //   const modules = ['relatedItemsAndOutfits', 'overview', 'qa', 'rateAndReview'];
-
-  //   const listeners = modules.map(module => {
-  //     let elem = document.getElementById(module);
-  //     elem.addEventListener('click', trackClicks);
-  //   });
-
-  //   // Determine unique user
-  //   let uniqueUser = localStorage.getItem(document.cookie);
-  //   uniqueUser = JSON.parse(uniqueUser);
-  //   if (uniqueUser.cookie !== document.cookie) {
-  //     console.log('user is not the same');
-  //     localStorage.setItem(`${document.cookie}`, JSON.stringify({ cookie: document.cookie }));
-  //   }
-  // }, []);
+  useEffect(() => {
+    window.addEventListener('resize', handleResize);
+  }, [windowWidth]);
 
   useEffect(() => {
     // Single Product
@@ -83,21 +63,25 @@ const App = () => {
   }, [productId]);
 
   return (
-    <div id="app-container" onMouseMove={cursorPosition}>
+    <div id="app-container">
       <div id="banner">
-        <div>
-          <span>
-            {/* <img className="logo" src="https://static.onecms.io/wp-content/uploads/sites/47/2022/09/15/can-cats-eat-candy-corn-3.png" /> */}
-            <img className="logo" src="https://media.istockphoto.com/vectors/corn-cob-in-a-green-husk-isolated-on-white-background-sweet-golden-vector-id1208173277?k=20&m=1208173277&s=612x612&w=0&h=XFqTQ-8JTjptNr2j8Hdfc2df2bfrVq-UenUwVef-yCg=" />
-          </span>&nbsp;
-          <h1 className="company-name">ATELIER MAÏS</h1>
+        <div className="logo-container">
+          <img className="logo" src="https://media.istockphoto.com/vectors/corn-cob-in-a-green-husk-isolated-on-white-background-sweet-golden-vector-id1208173277?k=20&m=1208173277&s=612x612&w=0&h=XFqTQ-8JTjptNr2j8Hdfc2df2bfrVq-UenUwVef-yCg=" />
+          <h1>ATELIER MAÏS</h1>
         </div>
         <div className="banner-icons">
-          <i className="fa-solid fa-magnifying-glass"> _______________</i>&nbsp;&nbsp;
-          <i className="fa-solid fa-house"></i>&nbsp;&nbsp;
-          <i className="fa-solid fa-cart-shopping"></i>&nbsp;&nbsp;
-          <i className="fa-solid fa-user"></i>&nbsp;&nbsp;
-          <i className="fa-solid fa-bars"></i>
+          {windowWidth < 768 ?
+            <i className="fa-solid fa-bars"></i> :
+            <>
+              <div className="search-container">
+                <span>________</span>
+                <i className="fa-solid fa-magnifying-glass"> </i>
+              </div>
+              <i className="fa-solid fa-house"></i>
+              <i className="fa-solid fa-cart-shopping"></i>
+              <i className="fa-solid fa-user"></i>
+            </>
+          }
         </div>
       </div>
 
@@ -105,7 +89,7 @@ const App = () => {
         <Overview productId={productId} currentProduct={currentProduct} rating={rating} totalReviews={totalReviews} />
       </div>
 
-      <div id="relatedItemsAndOutfits">
+      <div id="related-items-and-outfits">
         <RelatedItemsAndOutfits productId={productId} updateProduct={updateProduct} currentProduct={currentProduct} />
       </div>
 
@@ -114,7 +98,7 @@ const App = () => {
       </div>
 
       <div id="rateAndReview">
-        <RatingsAndReviews product_id={productId} ratingsData={ratingsData} rating={rating} currentProduct={currentProduct} totalReviews={totalReviews} photoWidget={photoWidget} images={images} setImages={setImages} />
+        <RatingsAndReviews productId={productId} ratingsData={ratingsData} rating={rating} currentProduct={currentProduct} totalReviews={totalReviews} photoWidget={photoWidget} images={images} setImages={setImages} />
       </div>
     </div>
   );

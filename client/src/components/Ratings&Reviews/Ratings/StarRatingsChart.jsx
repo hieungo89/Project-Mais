@@ -36,11 +36,8 @@ const StarRatingsChart = ({ rating, totalNumberOfReviews }) => {
       },
     },
     maintainAspectRatio: false,
-    // responsive: false => canvas doesn't resize
     responsive: true,
-    // makes it a horizontal bar
     indexAxis: 'y',
-    // hide labels
     plugins: {
       legend: {
         display: false
@@ -83,7 +80,7 @@ const StarRatingsChart = ({ rating, totalNumberOfReviews }) => {
   };
 
   return (
-    <div style={{ height: '25px', width: '350px' }}>
+    <div className="ratings-chart">
       <Bar data={data} options={options} />
     </div>
   );

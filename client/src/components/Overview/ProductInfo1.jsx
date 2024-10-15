@@ -18,7 +18,7 @@ const ProductInfo1 = ({ currentProduct, currentStyle, rating, totalReviews }) =>
   };
 
   return (
-    <div>
+    <div className="product-info">
       <span className="overall-stars">
         {rating ? <StarRating rating={rating} /> : null}
       </span>

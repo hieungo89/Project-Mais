@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import StarRating from './StarRating.jsx';
 import StarRatingsChart from './StarRatingsChart.jsx';
+import star from '../../../assets/images//star.png';
 
 const RatingsBreakdownSidebar = ({ setDisplayedReviews, reviews, rating, fiveStar, fourStar, threeStar, twoStar, oneStar, totalNumberOfReviews, product_id }) => {
 
@@ -11,6 +12,44 @@ const RatingsBreakdownSidebar = ({ setDisplayedReviews, reviews, rating, fiveSta
   const [toggleThreeStar, setToggleThreeStar] = useState(false);
   const [toggleTwoStar, setToggleTwoStar] = useState(false);
   const [toggleOneStar, setToggleOneStar] = useState(false);
+
+  const starAmount = [
+    {
+      num: 5,
+      star: fiveStar,
+    },
+    {
+      num: 4,
+      star: fourStar,
+    },
+    {
+      num: 3,
+      star: threeStar,
+    },
+    {
+      num: 2,
+      star: twoStar,
+    },
+    {
+      num: 1,
+      star: oneStar,
+    },
+  ];
+
+  const RatingsBreakdown = ({starAmt, num}) => {
+    return (
+      <div className="flexbox-container" onClick={() => handleStarClick(num)}>
+        <div className="breakdown">
+          {num} <img className="single-star-outline" src={star}/>
+        </div>
+        <StarRatingsChart totalNumberOfReviews={totalNumberOfReviews} rating={starAmt} />
+        <div className="breakdown">
+          <span>{starAmt}</span>
+          <span>reviews</span>
+        </div>
+      </div>
+    );
+  };
 
   useEffect(() => {
     let filtered = [];
@@ -44,58 +83,39 @@ const RatingsBreakdownSidebar = ({ setDisplayedReviews, reviews, rating, fiveSta
 
   const handleStarClick = (num) => {
     switch (num) {
-      case 5:
-        setToggleFiveStar(!toggleFiveStar);
-        break;
-      case 4:
-        setToggleFourStar(!toggleFourStar);
-        break;
-      case 3:
-        setToggleThreeStar(!toggleThreeStar);
-        break;
-      case 2:
-        setToggleTwoStar(!toggleTwoStar);
-        break;
-      case 1:
-        setToggleOneStar(!toggleOneStar);
-        break;
-      default:
+    case 5:
+      setToggleFiveStar(!toggleFiveStar);
+      break;
+    case 4:
+      setToggleFourStar(!toggleFourStar);
+      break;
+    case 3:
+      setToggleThreeStar(!toggleThreeStar);
+      break;
+    case 2:
+      setToggleTwoStar(!toggleTwoStar);
+      break;
+    case 1:
+      setToggleOneStar(!toggleOneStar);
+      break;
+    default:
     }
   };
 
   return (
     <>
-      <div className="align-ratings-breakdown-header">
-        <h2>
-          Ratings Breakdown
-        </h2>
-      </div>
+      <h2>Ratings Breakdown</h2>
       <div className="flexbox-container">
-        <h2 >
-          {rating} &nbsp;&nbsp;
-        </h2>
-        <div>
-          <sup className="overall-stars"><StarRating rating={rating} /></sup>
-        </div>
+        <h2>{rating}</h2>
+        <sup className="overall-stars"><StarRating rating={rating} /></sup>
       </div>
       <div className="align-ratings-breakdown-header">
         {RecommendPercentage()}% of reviews recommend this product
       </div>
-      <h4 className="flexbox-container" onClick={() => handleStarClick(5)}>
-        5 star &nbsp; &nbsp; &nbsp;&nbsp; <StarRatingsChart totalNumberOfReviews={totalNumberOfReviews} rating={fiveStar} /> &nbsp; {fiveStar} reviews
-      </h4>
-      <h4 className="flexbox-container" onClick={() => handleStarClick(4)}>
-        4 star &nbsp; &nbsp; &nbsp;&nbsp; <StarRatingsChart totalNumberOfReviews={totalNumberOfReviews} rating={fourStar} /> &nbsp; {fourStar} reviews
-      </h4>
-      <h4 className="flexbox-container" onClick={() => handleStarClick(3)}>
-        3 star &nbsp; &nbsp; &nbsp;&nbsp; <StarRatingsChart totalNumberOfReviews={totalNumberOfReviews} rating={threeStar} /> &nbsp; {threeStar} reviews
-      </h4>
-      <h4 className="flexbox-container" onClick={() => handleStarClick(2)}>
-        2 star &nbsp; &nbsp; &nbsp;&nbsp; <StarRatingsChart totalNumberOfReviews={totalNumberOfReviews} rating={twoStar} /> &nbsp; {twoStar} reviews
-      </h4>
-      <h4 className="flexbox-container" onClick={() => handleStarClick(1)}>
-        1 star &nbsp; &nbsp; &nbsp;&nbsp; <StarRatingsChart totalNumberOfReviews={totalNumberOfReviews} rating={oneStar} /> &nbsp; {oneStar} reviews
-      </h4>
+      {starAmount.map(singleStar => {
+        const {num, star} = singleStar;
+        return <RatingsBreakdown key={num} starAmt={star} num={num}/>;
+      })}
     </>
   );
 };

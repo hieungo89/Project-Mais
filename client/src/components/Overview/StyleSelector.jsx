@@ -48,7 +48,7 @@ const StyleSelector = ({currentStyle, styles, changeCurrentStyle, changeSkuSelec
 
   return (
     <div className="styles">
-      <p>
+      <p className="style-description">
         <b>STYLE {'>'} </b>
         {currentStyle.name}
       </p>

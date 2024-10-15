@@ -71,31 +71,25 @@ const ReviewsList = ({ metaData, product_id, prodName, addReview, displayedRevie
 
   return (
     <>
-      <div className="align-reviews-list-header">
-        <div className="flexbox-container">
-          <h2>
-            {totalNumberOfReviews} Reviews, sorted by
-          </h2>
-          <div className="sort-dropdown">
-            <button className="button-dropdown" onClick={handleOpen} >relevance</button>
-            {open ? (
-              <ul className="sort-dropdown-menu">
-                <li className="sort-dropdown-menu-item">
-                  <button onClick={(event) => handleSort(event)} >Helpful</button>
-                </li>
-                <li className="sort-dropdown-menu-item">
-                  <button onClick={(event) => handleSort(event)} >Newest</button>
-                </li>
-                <li className="sort-dropdown-menu-item">
-                  <button onClick={(event) => handleSort(event)} >Relevance</button>
-                </li>
-              </ul>
-            ) : null}
-          </div>
-        </div>
-      </div>
-      <br></br>
-      <br></br>
+      <h2>{totalNumberOfReviews} Reviews, sorted by
+        <span className="sort-dropdown">
+          <button className="button-dropdown" onClick={handleOpen} >relevance</button>
+          {open ? (
+            <ul className="sort-dropdown-menu">
+              <li className="sort-dropdown-menu-item">
+                <button onClick={(event) => handleSort(event)} >Helpful</button>
+              </li>
+              <li className="sort-dropdown-menu-item">
+                <button onClick={(event) => handleSort(event)} >Newest</button>
+              </li>
+              <li className="sort-dropdown-menu-item">
+                <button onClick={(event) => handleSort(event)} >Relevance</button>
+              </li>
+            </ul>
+          ) : null}
+        </span>
+      </h2>
+
       <div className="review-boxes">
         {currentReviews.length > 0
           ?

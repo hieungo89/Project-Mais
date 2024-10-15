@@ -1,7 +1,6 @@
 /* eslint-disable camelcase */
 import React, { useState, useEffect } from 'react';
 import SearchQA from './SearchQA.jsx';
-import Surprise from '../../Surprise.jsx';
 import AskAQuestionModal from './AskAQuestionModal.jsx';
 import IndividualQuestion from './IndividualQuestion.jsx';
 import AnswersList from './AnswersList.jsx';
@@ -16,7 +15,6 @@ const QuestionsAndAnswers = ({ productId, productName, photoWidget, images, setI
   const [isOpen, setIsOpen] = useState(false);
   const [questionCount, setQuestionCount] = useState(2);
   const [reRender, setReRender] = useState(false);
-  const [openSurprise, setOpenSurprise] = useState(false);
 
   const handleSearch = (value) => {
     let container = [];
@@ -71,7 +69,6 @@ const QuestionsAndAnswers = ({ productId, productName, photoWidget, images, setI
     if (e.target.innerText === 'COLLAPSE QUESTIONS') { setQuestionCount(2); }
   };
 
-  // works async in conjunction with handleLoadQuestionsButton
   useEffect(() => {
     if (allQuestionsData.length < 3) {
       setLoadQuestionButton(false);
@@ -109,7 +106,6 @@ const QuestionsAndAnswers = ({ productId, productName, photoWidget, images, setI
       .catch(err => console.log(err));
   };
 
-  // Renders list of Questions or Nothing.
   const renderQuestionsList = (data) => {
     if (data.length === 0) {
       return <em>No question found. Try again...</em>;
@@ -144,24 +140,21 @@ const QuestionsAndAnswers = ({ productId, productName, photoWidget, images, setI
   }, [productId, reRender]);
 
   return (
-    <div className="qa-container">
-      <p className="qa-title"><b>
-        <span onClick={() => setOpenSurprise(true)}
-        // Surprise image Modal
-        >Q</span>uestions & Answers </b></p>
-      <Surprise open={openSurprise} onClose={() => setOpenSurprise(false)} />
-
+    <>
+      <p className="qa-title">Questions & Answers</p>
       <div className="search-question"><SearchQA handleSearch={handleSearch} /></div>
       <div className="questions-list">{renderQuestionsList(questionsList)}</div>
-      <div className="more-answered-questions">
-        {loadQuestionButton && <button onClick={(e) => handleLoadQuestionsButton(e)} >MORE ANSWERED QUESTIONS</button>}
-        {collapseButton && questionsList.length > 0 && <button onClick={(e) => handleLoadQuestionsButton(e)}>COLLAPSE QUESTIONS</button>}
+      <div className="button-container">
+        <div className="more-answered-questions">
+          {loadQuestionButton && <button onClick={(e) => handleLoadQuestionsButton(e)} >MORE ANSWERED QUESTIONS</button>}
+          {collapseButton && questionsList.length > 0 && <button onClick={(e) => handleLoadQuestionsButton(e)}>COLLAPSE QUESTIONS</button>}
+        </div>
+        <div className="ask-question-modal">
+          <button onClick={() => setIsOpen(true)}>ASK A QUESTION +</button>
+          <AskAQuestionModal open={isOpen} onClose={() => setIsOpen(false)} product={productName} submitQuestion={handleSubmitQuestion} />
+        </div>
       </div>
-      <div className="ask-question-modal">
-        <button onClick={() => setIsOpen(true)}>ASK A QUESTION +</button>
-        <AskAQuestionModal open={isOpen} onClose={() => setIsOpen(false)} product={productName} submitQuestion={handleSubmitQuestion} />
-      </div>
-    </div>
+    </>
   );
 };
 

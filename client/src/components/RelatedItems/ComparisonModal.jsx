@@ -1,9 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import ReactDom from 'react-dom';
 import axios from 'axios';
-// import StarRating from '../Ratings&Reviews/Ratings/StarRating.jsx';
 import BarRating from './BarRating.jsx';
-
 
 const ComparisonModal = ({ open, onClose, productId, compareId, compareProduct, currentProduct, children }) => {
   const [currCharacteristics, setCurrCharacteristics] = useState();

@@ -2,7 +2,6 @@ import React, { useState } from 'react';
 import { FaStar } from 'react-icons/fa';
 import star from '../../../assets/images/star.png';
 
-// takes in a rating and renders 5 stars filled in proportionally with the provided rating, rounded to the nearest .25
 const StarRating = ({ rating }) => {
   let stars = [];
   while (stars.length < 5) {
@@ -16,24 +15,24 @@ const StarRating = ({ rating }) => {
       let full = Math.abs(1 - rating);
       let closest = Math.min(empty, oneQuarter, half, threeQuarters, full);
       switch (closest) {
-        case (empty):
-          stars.push(0);
-          break;
-        case oneQuarter:
-          stars.push(0.25);
-          break;
-        case half:
-          stars.push(0.5);
-          break;
-        case threeQuarters:
-          stars.push(0.75);
-          break;
-        case full:
-          stars.push(1.0);
-          break;
-        default:
-          stars.push(0);
-          break;
+      case (empty):
+        stars.push(0);
+        break;
+      case oneQuarter:
+        stars.push(0.25);
+        break;
+      case half:
+        stars.push(0.5);
+        break;
+      case threeQuarters:
+        stars.push(0.75);
+        break;
+      case full:
+        stars.push(1.0);
+        break;
+      default:
+        stars.push(0);
+        break;
       }
     } else {
       stars.push(0);
